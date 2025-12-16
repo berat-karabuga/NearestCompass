@@ -1,7 +1,6 @@
 package com.stargazer.nearestcompass.navigation
 
 
-//sealed class sınırlı sayıda seçenek demek
 sealed class Screen(val route: String){
 
     object Welcome : Screen("welcome")

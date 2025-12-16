@@ -86,10 +86,3 @@ class LocationManager (private val context: Context) {
     }
 }
 
-/*
-normalde sonun böyle olması gerekiyordu ama sürekli hata aldığım için değiştirdim
-return try {
-    fusedLocationClient.lastLocation.await() //özellikle burada hata alıyom
-} catch (e: Exception){
-    null
-}*/

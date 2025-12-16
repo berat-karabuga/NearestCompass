@@ -18,21 +18,35 @@ class CompassManager(context: Context) {
     private val accelerometerReading = FloatArray(3)
     private val magnetometerReading = FloatArray(3)
 
+    private val azimuthHistory = mutableListOf<Float>()
+    private val historySize = 10 // son 10 okumanın ortalamasını almayı sağlicaz
+
 
     fun getCompassFlow(): Flow<Float> = callbackFlow {
         val listener = object : SensorEventListener {
             override fun onSensorChanged(event: SensorEvent){
                 when(event.sensor.type){
                     Sensor.TYPE_ACCELEROMETER -> {
-                        System.arraycopy(event.values, 0, accelerometerReading, 0, accelerometerReading.size)
+                        System.arraycopy(
+                            event.values,
+                            0,
+                            accelerometerReading,
+                            0,
+                            accelerometerReading.size)
                     }
                     Sensor.TYPE_MAGNETIC_FIELD ->{
-                        System.arraycopy(event.values, 0, magnetometerReading, 0, magnetometerReading.size)
+                        System.arraycopy(
+                            event.values,
+                            0,
+                            magnetometerReading,
+                            0,
+                            magnetometerReading.size)
                     }
                 }
 
                 if (accelerometerReading[0] != 0f && magnetometerReading[0] != 0f){
                     updateOrientation()?.let{azimuth ->
+                        val somoothedAzimuth = applySmoothingLowPass(azimuth)
                         trySend(azimuth)
                     }
                 }
@@ -88,5 +102,15 @@ class CompassManager(context: Context) {
 
     fun isSensorsAvailable(): Boolean{
         return accelerometer !=null && magnetometer != null
+    }
+
+    private fun applySmoothingLowPass(newAzimuth: Float): Float{
+        azimuthHistory.add(newAzimuth)
+        if (azimuthHistory.size > historySize){
+            azimuthHistory.removeAt(0)
+        }
+        val average = azimuthHistory.average().toFloat()
+        return average
+
     }
 }

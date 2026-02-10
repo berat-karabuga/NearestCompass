@@ -93,8 +93,8 @@ fun WelcomeScreen(
             )
         }
 
-        /*kullanıcı izin vermeyi redderse bilgilendirme mesajı
-        burası direkt buttonun izin isteme kısmına elseif ile eklenezmiydi ki */
+        //kullanıcı izin vermeyi redderse bilgilendirme mesajı
+
         if (locationPermissionsState.shouldShowRationale){
             Spacer(modifier = Modifier.height(16.dp))
             Text(
@@ -118,8 +118,3 @@ fun WelcomeScreen(
 
 }
 
-@Preview(showBackground = true)
-@Composable
-fun WelcomeScreenPreview() {
-    WelcomeScreen(onNavigateToCompass = {})
-}

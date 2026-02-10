@@ -16,19 +16,14 @@ import kotlinx.coroutines.launch
 class StoreViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = OverpassRepository()
-
     private val _stores = MutableStateFlow<List<Store>>(emptyList())
     val stores: StateFlow<List<Store>> = _stores.asStateFlow()
-
     private val _nearestStore = MutableStateFlow<Store?>(null)
     val nearestStore: StateFlow<Store?> = _nearestStore.asStateFlow()
-
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
-
     private val _errorMessage = MutableStateFlow<String?>(null)
     val errorMessage: StateFlow<String?> = _errorMessage.asStateFlow()
-
 
     fun searchNearbyStores(userLocation: LocationData, radiusMeters: Int = 2000) {
         viewModelScope.launch {

@@ -54,7 +54,7 @@
 
 | Welcome Screen | Location Permission | Searching Stores | Navigation Active |
 |:---:|:---:|:---:|:---:|
-| <img src="/mnt/user-data/uploads/Welcome_Screen.png" width="200"/> | <img src="/mnt/user-data/uploads/Welcome_Screen_with_permission.png" width="200"/> | <img src="/mnt/user-data/uploads/Compass_Screen.png" width="200"/> | <img src="/mnt/user-data/uploads/location_is_found.png" width="200"/> |
+| <img src="screenshots/Welcome_Screen.png" width="200"/> | <img src="screenshots/Welcome_Screen_with_permission.png" width="200"/> | <img src="screenshots/Compass_Screen.png" width="200"/> | <img src="screenshots/location_is_found.png" width="200"/> |
 | *Clean, minimalist welcome interface* | *Permission request dialog* | *Real-time store search in progress* | *Active compass navigation with distance* |
 
 </div>
